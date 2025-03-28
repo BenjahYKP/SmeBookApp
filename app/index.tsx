@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import { Text, View, Alert, TextInput, StyleSheet, TouchableOpacity } from "react-native";
+import { useRouter } from 'expo-router';
 
 export default function LoginScreen() {
+
+  const router = useRouter();
+  const handleLogin = () => {
+    router.replace('/screens/homepage');
+    Alert.alert("Me paso por la raja tu funcionalidad pagina mochap :u")
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Bienvenido/a RIDE</Text>
 
 
-      <TouchableOpacity style={ButtonStyle.button} >
+      <TouchableOpacity style={ButtonStyle.button} onPress={handleLogin} >
         <Text style={ButtonStyle.buttonText}>Iniciar Sesión</Text>
       </TouchableOpacity>
 
