@@ -1,40 +1,44 @@
 import React, { useState } from "react";
-import { Text, View, Button, Alert, TextInput, StyleSheet } from "react-native";
+import { Text, View, Alert, TextInput, StyleSheet, TouchableOpacity } from "react-native";
 
 export default function LoginScreen() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  const handleLogin = () => {
-    if (username === "admin" && password === "1234") {
-      Alert.alert("Bienvenido", "Inicio de sesión exitoso");
-    } else {
-      setError("Usuario o contraseña incorrectos");
-    }
-  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Iniciar Sesión</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Usuario"
-        value={username}
-        onChangeText={setUsername}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Contraseña"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
-      {error ? <Text style={styles.error}>{error}</Text> : null}
-      <Button title="Ingresar" onPress={handleLogin} />
+      <Text style={styles.title}>Bienvenido/a RIDE</Text>
+
+
+      <TouchableOpacity style={ButtonStyle.button} >
+        <Text style={ButtonStyle.buttonText}>Iniciar Sesión</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={[ButtonStyle.button, { backgroundColor: "#ffffff",}]} 
+        onPress={() => Alert.alert("Registro", "Funcionalidad de registro no implementada")}
+      >
+        <Text style={[ButtonStyle.buttonText, { color:"black" }]}>Registrarse</Text>
+      </TouchableOpacity>
     </View>
   );
 }
+
+const ButtonStyle = StyleSheet.create({
+  button: {
+    backgroundColor: "#014898",
+    borderRadius: 100,
+    padding: 10,
+    marginTop: 20,
+    width: "50%",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "black",
+  },
+  buttonText: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -42,12 +46,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
-    backgroundColor: "#f4f4f4",
+    backgroundColor: "#ffffff",
   },
   title: {
-    fontSize: 24,
+    fontSize: 32,
     fontWeight: "bold",
-    marginBottom: 20,
+    marginBottom: 40,
+    color: "#014898",
   },
   input: {
     width: "100%",
