@@ -1,23 +1,29 @@
-import React from "react";
-import { Text, View, Alert, StyleSheet, TouchableOpacity , ImageBackground} from "react-native";
-import Svg, { Path } from "react-native-svg";
-
+import React  from "react";
+import { Text, View, Alert, StyleSheet, TouchableOpacity, Image, ImageBackground} from "react-native";
 import { useRouter } from 'expo-router';
+
 
 export default function LoginScreen() {
 
+
+  const router = useRouter();
+  const handleLogin = () => {
+    router.replace('/screens/homepage');
+    Alert.alert(" Benjamin es lo mas weko que hay y me cago toda mi rama")
+  };
+
   return (
-    <ImageBackground 
-      source={backgroundImage} 
-      style={styles.background}
-      imageStyle={{ opacity: 0.5 }}
-      resizeMode="cover"
-    >
+    <ImageBackground source={require('../assets/images/wave-haikei1.png')} 
+    style={styles.background} >
+
     <View style={styles.container}>
-      <Text style={styles.title}>Bienvenido/a SMEBOOK</Text>
+       <Image source={require('../assets/images/logo.png')} 
+       style={styles.logo} />
 
+      <Text style={styles.title}>Bienvenido/a {"\n"}  SMEBOOK </Text>
+      
 
-      <TouchableOpacity style={ButtonStyle.button} onPress={() => Alert.alert("Consulta", "Funcionalidad de inicio de sesión no implementada")}>
+      <TouchableOpacity style={ButtonStyle.button} onPress={handleLogin} >
         <Text style={ButtonStyle.buttonText}>Iniciar Sesión</Text>
       </TouchableOpacity>
 
@@ -28,17 +34,8 @@ export default function LoginScreen() {
         <Text style={[ButtonStyle.buttonText, { color:"black" }]}>Consulta</Text>
       </TouchableOpacity>
 
-      <View style={styles.waveContainer}>
-        <Svg height="200%" width="100%" viewBox="0 0 1440 320">
-          <Path
-            fill="#014898"
-            d="M0,288L60,261.3C120,235,240,181,360,144C480,107,600,85,720,85.3C840,85,960,107,1080,133.3C1200,160,1320,192,1380,208L1440,224V320H0Z"
-          />
-        </Svg>
-      </View>
-      </View>
-      </ImageBackground>
-    
+    </View>
+    </ImageBackground>
   );
 }
 
@@ -46,12 +43,17 @@ const ButtonStyle = StyleSheet.create({
   button: {
     backgroundColor: "#014898",
     borderRadius: 100,
-    padding: 10,
+    padding: 13,
     marginTop: 20,
-    width: "50%",
+    width: "75%",
     alignItems: "center",
     borderWidth: 1,
     borderColor: "black",
+    shadowColor: "#000", 
+    shadowOffset: { width: 0, height: 4 }, 
+    shadowOpacity: 0.5, 
+    shadowRadius: 4, 
+    elevation: 30, 
   },
   buttonText: {
     color: "white",
@@ -61,18 +63,12 @@ const ButtonStyle = StyleSheet.create({
 });
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
-  },
-
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
-    backgroundColor: "#ffffff",
+
   },
   title: {
     fontSize: 32,
@@ -90,10 +86,16 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     backgroundColor: "white",
   },
-  waveContainer: {
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
-    height: 600,
-  }
+ background: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+    paddingBottom: 100,
+
+  },
+  logo: {
+    width: 150,
+    height: 200,
+    marginBottom: 10,
+  },
 });
