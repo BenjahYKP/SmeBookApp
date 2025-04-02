@@ -1,11 +1,19 @@
-import React, { useState } from "react";
-import { Text, View, Alert, TextInput, StyleSheet, TouchableOpacity } from "react-native";
+import React from "react";
+import { Text, View, Alert, StyleSheet, TouchableOpacity , ImageBackground} from "react-native";
+import Svg, { Path } from "react-native-svg";
+
 
 export default function LoginScreen() {
-
+const backgroundImage = require("./../assets/images/logo.png");
   return (
+    <ImageBackground 
+      source={backgroundImage} 
+      style={styles.background}
+      imageStyle={{ opacity: 0.5 }}
+      resizeMode="cover"
+    >
     <View style={styles.container}>
-      <Text style={styles.title}>Bienvenido/a RIDE</Text>
+      <Text style={styles.title}>Bienvenido/a SMEBOOK</Text>
 
 
       <TouchableOpacity style={ButtonStyle.button} >
@@ -14,11 +22,22 @@ export default function LoginScreen() {
 
       <TouchableOpacity
         style={[ButtonStyle.button, { backgroundColor: "#ffffff",}]} 
-        onPress={() => Alert.alert("Registro", "Funcionalidad de registro no implementada")}
+        onPress={() => Alert.alert("Consulta", "Funcionalidad de registro no implementada")}
       >
-        <Text style={[ButtonStyle.buttonText, { color:"black" }]}>Registrarse</Text>
+        <Text style={[ButtonStyle.buttonText, { color:"black" }]}>Consulta</Text>
       </TouchableOpacity>
-    </View>
+
+      <View style={styles.waveContainer}>
+        <Svg height="200%" width="100%" viewBox="0 0 1440 320">
+          <Path
+            fill="#014898"
+            d="M0,288L60,261.3C120,235,240,181,360,144C480,107,600,85,720,85.3C840,85,960,107,1080,133.3C1200,160,1320,192,1380,208L1440,224V320H0Z"
+          />
+        </Svg>
+      </View>
+      </View>
+      </ImageBackground>
+    
   );
 }
 
@@ -41,6 +60,12 @@ const ButtonStyle = StyleSheet.create({
 });
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+  },
+
   container: {
     flex: 1,
     justifyContent: "center",
@@ -64,8 +89,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     backgroundColor: "white",
   },
-  error: {
-    color: "red",
-    marginBottom: 10,
-  },
+  waveContainer: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    height: 600,
+  }
 });
