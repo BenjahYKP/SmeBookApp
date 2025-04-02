@@ -17,7 +17,7 @@ export default function LoginScreen() {
       <Text style={styles.title}>Bienvenido/a SMEBOOK</Text>
 
 
-      <TouchableOpacity style={ButtonStyle.button} onPress={handleLogin} >
+      <TouchableOpacity style={ButtonStyle.button} onPress={() => Alert.alert("Consulta", "Funcionalidad de inicio de sesión no implementada")}>
         <Text style={ButtonStyle.buttonText}>Iniciar Sesión</Text>
       </TouchableOpacity>
 
