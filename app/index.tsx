@@ -2,9 +2,10 @@ import React from "react";
 import { Text, View, Alert, StyleSheet, TouchableOpacity , ImageBackground} from "react-native";
 import Svg, { Path } from "react-native-svg";
 
+import { useRouter } from 'expo-router';
 
 export default function LoginScreen() {
-const backgroundImage = require("./../assets/images/logo.png");
+
   return (
     <ImageBackground 
       source={backgroundImage} 
@@ -16,7 +17,7 @@ const backgroundImage = require("./../assets/images/logo.png");
       <Text style={styles.title}>Bienvenido/a SMEBOOK</Text>
 
 
-      <TouchableOpacity style={ButtonStyle.button} >
+      <TouchableOpacity style={ButtonStyle.button} onPress={handleLogin} >
         <Text style={ButtonStyle.buttonText}>Iniciar Sesión</Text>
       </TouchableOpacity>
 
