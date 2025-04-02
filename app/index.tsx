@@ -1,19 +1,27 @@
-import React, { useState } from "react";
-import { Text, View, Alert, TextInput, StyleSheet, TouchableOpacity } from "react-native";
+import React  from "react";
+import { Text, View, Alert, StyleSheet, TouchableOpacity, Image, ImageBackground} from "react-native";
 import { useRouter } from 'expo-router';
 
+
 export default function LoginScreen() {
+
 
   const router = useRouter();
   const handleLogin = () => {
     router.replace('/screens/homepage');
-    Alert.alert("Me paso por la raja tu funcionalidad pagina mochap :u")
+    Alert.alert(" Benjamin es lo mas weko que hay y me cago toda mi rama")
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Bienvenido/a RIDE</Text>
+    <ImageBackground source={require('../assets/images/wave-haikei1.png')} 
+    style={styles.background} >
 
+    <View style={styles.container}>
+       <Image source={require('../assets/images/logo.png')} 
+       style={styles.logo} />
+
+      <Text style={styles.title}>Bienvenido/a {"\n"}  SMEBOOK </Text>
+      
 
       <TouchableOpacity style={ButtonStyle.button} onPress={handleLogin} >
         <Text style={ButtonStyle.buttonText}>Iniciar Sesión</Text>
@@ -21,11 +29,13 @@ export default function LoginScreen() {
 
       <TouchableOpacity
         style={[ButtonStyle.button, { backgroundColor: "#ffffff",}]} 
-        onPress={() => Alert.alert("Registro", "Funcionalidad de registro no implementada")}
+        onPress={() => Alert.alert("Consulta", "Funcionalidad de registro no implementada")}
       >
-        <Text style={[ButtonStyle.buttonText, { color:"black" }]}>Registrarse</Text>
+        <Text style={[ButtonStyle.buttonText, { color:"black" }]}>Consulta</Text>
       </TouchableOpacity>
+
     </View>
+    </ImageBackground>
   );
 }
 
@@ -33,12 +43,17 @@ const ButtonStyle = StyleSheet.create({
   button: {
     backgroundColor: "#014898",
     borderRadius: 100,
-    padding: 10,
+    padding: 13,
     marginTop: 20,
-    width: "50%",
+    width: "75%",
     alignItems: "center",
     borderWidth: 1,
     borderColor: "black",
+    shadowColor: "#000", 
+    shadowOffset: { width: 0, height: 4 }, 
+    shadowOpacity: 0.5, 
+    shadowRadius: 4, 
+    elevation: 30, 
   },
   buttonText: {
     color: "white",
@@ -53,7 +68,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
-    backgroundColor: "#ffffff",
+
   },
   title: {
     fontSize: 32,
@@ -71,8 +86,16 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     backgroundColor: "white",
   },
-  error: {
-    color: "red",
+ background: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+    paddingBottom: 100,
+
+  },
+  logo: {
+    width: 150,
+    height: 200,
     marginBottom: 10,
   },
 });
