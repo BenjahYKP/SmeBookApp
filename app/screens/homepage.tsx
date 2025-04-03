@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { ScrollView, Text, View, Image, TouchableOpacity, StyleSheet, Dimensions } from "react-native";
+import { Text, View, Image, TouchableOpacity, StyleSheet, Dimensions } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useSharedValue } from "react-native-reanimated";
 import Carousel, { ICarouselInstance, Pagination } from "react-native-reanimated-carousel";
@@ -7,19 +7,16 @@ import Carousel, { ICarouselInstance, Pagination } from "react-native-reanimated
 const newsData = [
   {
     id: "1",
-    title: "Noticia 1",
     description: "El colegio informa que el día de mañana se suspenden las clases por motivo de fuerza mayor.",
     image: require("../../assets/images/Colegio.jpg"),
   },
   {
     id: "2",
-    title: "Noticia 2",
     description: "Se realizará una reunión de padres el próximo viernes a las 18:00 horas.",
     image: require("../../assets/images/Reunion.jpeg"),
   },
   {
     id: "3",
-    title: "Noticia 3",
     description: "El equipo de fútbol del colegio ganó el torneo interescolar.",
     image: require("../../assets/images/Futbol.jpg"),
   },
@@ -39,7 +36,7 @@ export default function HomeScreen() {
   };
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+    <View style={styles.container}>
       <View style={styles.header}>
         <View>
           <Text style={styles.title}>Bienvenido</Text>
@@ -55,20 +52,20 @@ export default function HomeScreen() {
         <Carousel
           ref={ref}
           width={width - 40}
-          height={width / 1.5}
+          height={width * 0.7}
           data={newsData}
           onProgressChange={progress}
           renderItem={({ item }) => (
             <View style={styles.newsItem}>
               <Image source={item.image} style={styles.newsImage} />
               <View style={styles.newsTextContainer}>
-                <Text style={styles.newsTitle}>{item.title}</Text>
                 <Text style={styles.newsText}>{item.description}</Text>
               </View>
             </View>
           )}
         />
       </View>
+
       <Pagination.Basic
         progress={progress}
         data={newsData}
@@ -77,10 +74,32 @@ export default function HomeScreen() {
         onPress={onPressPagination}
       />
 
-      <TouchableOpacity style={styles.newsButton}>
-        <Text style={styles.newsButtonText}>Agenda</Text>
-      </TouchableOpacity>
-    </ScrollView>
+      <View>
+        <TouchableOpacity style={styles.button}>
+          <View style={styles.blueOverlay} />
+          <Ionicons name="calendar-outline" size={24} color="#fff" style={styles.icon} />
+          <View style={styles.textContainer}>
+            <Text style={styles.buttonText}>Asistencia</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button}>
+          <View style={styles.blueOverlay} />
+          <Ionicons name="document-text-outline" size={24} color="#fff" style={styles.icon} />
+          <View style={styles.textContainer}>
+            <Text style={styles.buttonText}>Notas</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button}>
+          <View style={styles.blueOverlay} />
+          <Ionicons name="clipboard-outline" size={24} color="#fff" style={styles.icon} />
+          <View style={styles.textContainer}>
+            <Text style={styles.buttonText}>Anotaciones</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }
 
@@ -88,10 +107,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-  },
-  contentContainer: {
     padding: 20,
-    paddingBottom: 80,
   },
   header: {
     flexDirection: "row",
@@ -114,7 +130,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   newsContainer: {
-    marginBottom: 30,
+    marginBottom: 15,
     padding: 20,
     borderRadius: 20,
     alignItems: "center",
@@ -135,16 +151,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   newsTextContainer: {
-    width: "100%", 
-    paddingHorizontal: 10, 
+    width: "100%",
+    paddingHorizontal: 10,
     alignItems: "center",
-  },
-  newsTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#1a237e",
-    textAlign: "center",
-    marginBottom: 5,
   },
   newsText: {
     fontSize: 16,
@@ -153,22 +162,53 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingHorizontal: 15,
   },
-  newsButton: {
-    backgroundColor: "#e8eaf6",
-    padding: 15,
-    borderRadius: 8,
-    alignItems: "center",
-  },
-  newsButtonText: {
-    fontSize: 16,
-    color: "#1a237e",
-    fontWeight: "500",
-  },
   sectionTitle: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "bold",
     color: "#1a237e",
+    marginBottom: 10,
+  },
+  button: {
+    position: "relative",
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    borderRadius: 30,
     marginBottom: 15,
-    textAlign: "center",
+    borderWidth: 1,
+    borderColor: "#1a237e",
+    overflow: "hidden",
+    paddingVertical: 25,
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+  },
+  blueOverlay: {
+    position: "absolute",
+    left: 0,
+    top: 0,
+    bottom: 0,
+    width: 75,
+    borderRadius: 30,
+    backgroundColor: "#1a237e",
+  },
+  icon: {
+    position: "absolute",
+    left: 25,
+    zIndex: 1,
+  },
+  textContainer: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: "500",
+    color: "#1a237e",
   },
 });
