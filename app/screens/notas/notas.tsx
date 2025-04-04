@@ -1,7 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
 export default function NotasScreen() {
+  const router = useRouter();
+
   const notas = [
     { asignatura: 'Matemáticas', nota: 6.2, faltas: 2 },
     { asignatura: 'Historia', nota: 5.8, faltas: 1 },
@@ -13,7 +17,15 @@ export default function NotasScreen() {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.header}>Notas Académicas</Text>
+      {/* Encabezado con botón de volver y título centrado */}
+      <View style={styles.headerWrapper}>
+        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+          <Ionicons name="arrow-back-outline" size={24} color="black" />
+        </TouchableOpacity>
+        <Text style={styles.header}>Notas Académicas</Text>
+        <View style={styles.rightPlaceholder} />
+      </View>
+
       <Text style={styles.subheader}>Alumno: Joaquín Pérez</Text>
       
       <View style={styles.promedioContainer}>
@@ -34,7 +46,9 @@ export default function NotasScreen() {
           
           <View style={styles.detalleContainer}>
             <Text style={styles.detalleText}>Faltas: {item.faltas}</Text>
-            <Text style={styles.detalleText}>Estado: {item.nota >= 5.5 ? 'Aprobado' : 'Reprobado'}</Text>
+            <Text style={styles.detalleText}>
+              Estado: {item.nota >= 5.5 ? 'Aprobado' : 'Reprobado'}
+            </Text>
           </View>
         </View>
       ))}
@@ -48,11 +62,26 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#f5f5f5',
   },
+  headerWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 50,
+    marginBottom: 10,
+  },
+  backButton: {
+    padding: 8,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 20,
+  },
+  rightPlaceholder: {
+    width: 40, // Mismo ancho que el botón de volver para centrar el título
+  },
   header: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#1a237e',
-    marginBottom: 10,
+    textAlign: 'center',
   },
   subheader: {
     fontSize: 16,

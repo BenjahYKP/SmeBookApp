@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { Text, View, Image, TouchableOpacity, StyleSheet, Dimensions } from "react-native";
+import { useRouter } from 'expo-router';
 import { Ionicons } from "@expo/vector-icons";
 import { useSharedValue } from "react-native-reanimated";
 import Carousel, { ICarouselInstance, Pagination } from "react-native-reanimated-carousel";
@@ -25,8 +26,19 @@ const newsData = [
 const width = Dimensions.get("window").width;
 
 export default function HomeScreen() {
+  const router = useRouter();
   const ref = useRef<ICarouselInstance>(null);
   const progress = useSharedValue<number>(0);
+  
+  const handleAsistencia = () => {
+    router.push('/screens/Asistencia/Asistencia');
+  };
+  const handleNotas = () => {
+    router.push('/screens/notas/notas');
+  };
+  const handleAnotaciones = () => {
+    router.push('/screens/anotaciones/anotaciones');
+  };
 
   const onPressPagination = (index: number) => {
     ref.current?.scrollTo({
@@ -75,7 +87,7 @@ export default function HomeScreen() {
       />
 
       <View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={handleAsistencia}>
           <View style={styles.blueOverlay} />
           <Ionicons name="calendar-outline" size={24} color="#fff" style={styles.icon} />
           <View style={styles.textContainer}>
@@ -83,7 +95,7 @@ export default function HomeScreen() {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={handleNotas}>
           <View style={styles.blueOverlay} />
           <Ionicons name="document-text-outline" size={24} color="#fff" style={styles.icon} />
           <View style={styles.textContainer}>
@@ -91,7 +103,7 @@ export default function HomeScreen() {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={handleAnotaciones}>
           <View style={styles.blueOverlay} />
           <Ionicons name="clipboard-outline" size={24} color="#fff" style={styles.icon} />
           <View style={styles.textContainer}>
@@ -176,7 +188,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginBottom: 15,
     borderWidth: 1,
-    borderColor: "#1a237e",
+    borderColor: "#cfcfcf",
     overflow: "hidden",
     paddingVertical: 25,
     elevation: 5,
