@@ -9,7 +9,7 @@ export default function BottomTabBar() {
     { 
       name: 'INICIO', 
       path: '/screens/homepage',
-      icon: (isActive: boolean) => (
+      icon: (isActive) => (
         <Image
           source={require('../../assets/images/home.png')}
           style={[
@@ -20,9 +20,9 @@ export default function BottomTabBar() {
       )
     },
     { 
-      name: 'NOTAS', 
-      path: '/screens/notas/notas',
-      icon: (isActive: boolean) => (
+      name: 'NOTICIAS', 
+      path: '/screens/noticias/noticias', // Asegúrate de tener esta ruta definida
+      icon: (isActive) => (
         <Image
           source={require('../../assets/images/file.png')}
           style={[
@@ -33,22 +33,9 @@ export default function BottomTabBar() {
       )
     },
     { 
-      name: 'ANOTACIONES', 
-      path: '/screens/anotaciones/anotaciones',
-      icon: (isActive: boolean) => (
-        <Image
-          source={require('../../assets/images/wirte.png')}
-          style={[
-            styles.iconImage,
-            { tintColor: isActive ? '#1a237e' : '#757575' }
-          ]}
-        />
-      )
-    },
-    { 
       name: 'AJUSTES', 
       path: '/screens/ajustes/ajustes',
-      icon: (isActive: boolean) => (
+      icon: (isActive) => (
         <Image
           source={require('../../assets/images/settings.png')}
           style={[
