@@ -21,7 +21,7 @@ export default function BottomTabBar() {
     },
     { 
       name: 'NOTICIAS', 
-      path: '/screens/noticias/noticias', // Asegúrate de tener esta ruta definida
+      path: '/screens/anotaciones/anotaciones', 
       icon: (isActive) => (
         <Image
           source={require('../../assets/images/file.png')}
